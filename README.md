@@ -1,6 +1,6 @@
 # OnlineGroceryStore
 A web application for managing a grocery store that that will help grocery stores run smoothly and sell their products online. This website will be like the store's digital manager, making it easy to sell groceries to customers.
-# Technologies used
+## Technologies used
 + HTML: used for structuring web pages.
 + Bootstrap 5: For styling the web pages.
 + Jinja2: Templating Engine.
@@ -9,7 +9,7 @@ A web application for managing a grocery store that that will help grocery store
 + Flask-SQLAlchemy: Simplifies Pythonic database interactions with class-based table and record representation.
 + SQLite: Data Storage
 + Flask-RESTful: Simplify the development of RESTful APIs in Flask
-# Database Schema
+## Database Schema
 1. roles_users Table
     1. **id (Primary Key)**: Unique identifier for role assignments.
     2.  **user_id (Foreign Key)**: References the id in the user table, establishing a relationship between users and 
@@ -60,11 +60,11 @@ product in the cart.
     5. **quantity**: The quantity of the product in the bill, with a check constraint to ensure its non-negative.
   
   
-# API Design
+## API Design
 This project implements APIs for Category which includes creating, reading, updating and deleting a category. 
 Also implements APIs for Products which includes creating, reading, updating, deleting a product and list all 
 products present in a particular category.
-# Architecture and Features
+## Architecture and Features
 The project structure is centered around an entry point, app.py, and features distinct directories, including 
 application, db_directory, static, and templates. Within the application directory, there are modules 
 such as config.py for configuring the app, database.py for establishing the database, models.py for 
@@ -78,7 +78,7 @@ Users can browse and purchase products, perform searches by category or product 
 cart, view out-of-stock items, and calculate total amounts. Also implemented Restful APIs for category and 
 products. All user inputs are validated for accuracy.
 
-#  Running the App
+##  Running the App
 To run the app, follow these steps:
 1. Execute the local_setup.sh script to set up the environment and install required packages.
 2. Launch the app by running local_run.sh. You can access the app at http://127.0.0.1:5000/ to begin using it.
