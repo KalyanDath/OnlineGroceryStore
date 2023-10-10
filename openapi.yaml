@@ -1,0 +1,476 @@
+openapi: 3.0.0
+info:
+  title: Grocery Store APIs
+  description: >
+    <div> <h2>This Document Contains all the APIs implemented for Grocery store on Category and Products.</h2>
+    </div>
+    
+    <h3> Error Codes </h3> 
+    <table>
+      <thead>
+        <th>Resource</th>
+        <th>Error Code</th>
+        <th>Message</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Category</td>
+        <td>C001</td>
+        <td>Category Name is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P01</td>
+        <td>Product Name is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P02</td>
+        <td>Category ID does not exist.</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P03</td>
+        <td>Price should be a number.</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P04</td>
+        <td>Invalid unit value. Must be 'unit', 'kg','litres', or 'dozen'.</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P05</td>
+        <td>Quantity should be a integer.</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P06</td>
+        <td>Quantity should be atleast 0.</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P07</td>
+        <td>Category_id is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P08</td>
+        <td>Price is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P09</td>
+        <td>Unit is required</td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>P10</td>
+        <td>Quantity is required</td>
+      </tr>
+    </table>
+
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/category/{category_id}:
+    description: End point to read, update and delete a course resource with course_id = courseId.
+    get:
+      tags:
+        - Category
+      description: Operation to Read Category resource.
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: category object
+                type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 1
+                  category_name:
+                    type: string
+                    example: Fruits
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Category not found
+
+    put:
+      tags:
+        - Category
+      description: Operation to update the category resource.
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Fruits
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 1
+                  course_name:
+                    type: string
+                    example: Fruits
+        '404':
+          description: Course not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      tags:
+        - Category
+      description: Operation to delete the category resource
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Course not found
+        '500':
+          description: Intenal Server Error
+
+  /api/category:
+    description: End point to create category resource
+    post:
+      tags:
+        - Category
+      description: Operation to create the category resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Fruits
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category_id:
+                    type: integer
+                    example: 1
+                  category_name:
+                    type: string
+                    example: Fruits
+        '409':
+          description: category already exist
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+                    
+                    
+  /api/product/{product_id}:
+    description: Url to read, update and delete the product resource.
+    get:
+      tags:
+        - Products
+      description: Operation to read product resource
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: student object
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 1
+                  product_name:
+                    type: string
+                    example: "Apple"
+                  category_id:
+                    type: integer
+                    example: 2
+                  price:
+                    type: number
+                    example: 50.0
+                  unit:
+                    type: string
+                    example: kg
+                  qunatity:
+                    type: integer
+                    example: 2
+        '500':
+          description: Internal server error
+        '404':
+          description: Student not found
+
+    put:
+      tags:
+        - Products
+      description: Operation to update the product resource
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 101
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: Apple
+                category_id:
+                  type: integer
+                  example: 2
+                price:
+                  type: number
+                  example: 100.0
+                unit:
+                  type: string
+                  example: kg
+                quantity:
+                  type: integer
+                  example: 25
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 5
+                  product_name:
+                    type: string
+                    example: Milk
+                  category_id:
+                    type: integer
+                    example: 3
+                  price:
+                    type: number
+                    example: 29.5
+                  unit:
+                    type: string
+                    example: unit
+                  quantity:
+                    type: integer
+                    example: 25
+        '404':
+          description: Student not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      tags:
+        - Products
+      description: Operation to delete the product resource
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: integer
+            example: 5
+      responses:
+        '200':
+          description: Successfully Deleted
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Student not found
+
+  /api/product:
+    description: Url to create student resource
+    post:
+      tags:
+        - Products
+      description: Operation to create the product resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: Apple
+                category_id:
+                  type: integer
+                  example: 4
+                price:
+                  type: number
+                  example: 50.5
+                unit:
+                  type: string
+                  example: kg
+                quantity:
+                  type: integer
+                  example: 20
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                title: student object
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    example: 6
+                  product_name:
+                    type: string
+                    example: Apple
+                  category_id:
+                    type: integer
+                    example: 4
+                  price:
+                    type: number
+                    example: 50.5
+                  unit:
+                    type: string
+                    example: kg
+                  quantity:
+                    type: integer
+                    example: 20
+        '409':
+          description: Product already exist
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/category/{category_id}/product:
+    description: Url to get the the list of products belonging to a particular category using category_id.
+    get:
+      tags:
+        - Products
+      description: URL to get the list of products in a category by category_id
+      parameters:
+        - in: path
+          name: category_id
+          required: true
+          schema:
+            type: integer
+            example: 101
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    category_id:
+                      type: integer
+                      example: 4
+                    price:
+                      type: number
+                      example: 35.7
+                    product_id:
+                      type: integer
+                      example: 1
+                    product_name:
+                      type: string
+                      example: "Apple"
+                    quantity:
+                      type: integer
+                      example: 20
+                    unit:
+                      type: string
+                      example: "kg"
+        '404':
+          description: Invalid Category Id
+        '500':
+          description: Internal Server Error
+
+    
