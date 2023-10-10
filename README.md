@@ -82,3 +82,11 @@ products. All user inputs are validated for accuracy.
 To run the app, follow these steps:
 1. Execute the local_setup.sh script to set up the environment and install required packages.
 2. Launch the app by running local_run.sh. You can access the app at http://127.0.0.1:5000/ to begin using it.
+## Note
+1.  Admin credentials are :
+    * Email : abc123@gmail.com
+    * Password : possible
+## Future Works
+1. Export section/product engagement (number of products bought, frequently bought products, most demanded sections).
+2. Predict demand of a product based on the previous trends.
+3. Provide promo codes for the first transaction of new user. (gives say x% discount on the total amount on the first purchase).
