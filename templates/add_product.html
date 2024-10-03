@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+		{% include "logged_navbar.html" %}
+	{% endif %}
+    
+    <div class="container">
+        <div class="row text-center">
+            <h2><u><b style="color: #6610f2;">{{ product.product_name }}</b> - {{ product.category.category_name }}</u> </h2>
+        </div>
+        <div class="row mt-4 text-center">
+            <h3>Availability :{% if product.quantity == 0 %}Out of Stock{% else %}<b style="color: #167819;">In Stock</b>: {{product.quantity}} {{product.unit}} {% endif %}</h3>
+        </div>
+        <form action="/add_product/{{ product.product_name }}" method="post">
+        <div class="row mt-4">
+            <div class="col-3 mx-auto">
+                <label>Quantity:</label>
+                <input type="number" name="quantity" required min="1">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-3 mx-auto">
+                <label>Price(INR):</label>
+                <input type="number" name="price" value="{{ product.price }}"  disabled>
+            </div>
+        </div>
+        <div class="row mt-4 text-center">
+            <div class="col-3 mx-auto">
+                {% if flag == "yes" %}
+                    <b style="color:green;">Product Added Successfully!!!</b>
+                {% elif flag== "quantity" %}
+                <b style="color:red;">Not Enough Quantity in Stock!!!</b>
+                {% endif %}    
+            </div>          
+        </div> 
+        <div class="row mt-4 text-center">
+            <div class="d-grid gap-2 d-md-block">
+                <input class="btn btn-success" type="submit" value="Add to Cart">
+        </form>
+                <a class="btn btn-danger" href="/">Go Back to Home</a>
+            </div>
+        </div>          
+    </div>    
+</body>
+</html>

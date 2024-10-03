@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Cart Product</title>
+</head>
+<body>
+    {% include "logged_navbar.html" %}
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                <h3 class="text-center mb-4" style="color: #ff0000;">Delete Product from Cart:<b style="color: #6610f2;"> {{ product.product.product_name}}</b> </h3>
+            </div>
+        </div>
+        <table class="table table-danger">
+            <thead>
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Price/Unit(INR)</th>
+                <th scope="col">Quantity({{product.product.unit}})</th>
+              </tr>
+            </thead>
+            <tr>
+                <th scope="row">{{product.product.product_name}}</th>
+                <td>{{product.product.unit}}</td>
+                <td>{{product.product.price}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </table>
+        <div class="row mt-4">
+            <div class="col-sm-6 mx-auto">
+                <form action="/delete_cart_product/{{ product.product.product_name }}" method="post">
+                        <div id="useridhelp" class="form-text text-center">
+                            <p><b>Are you sure you want to delete this product from Cart?</b></p>
+                            <b style="color: #ff0000;">This action cannot be reverted!!</b>
+                        </div>
+                        <div class="text-center mt-4">
+                            <input type="submit" class="btn btn-danger mb-4" value="Delete">
+                            <a class="btn btn-outline-success mb-4" href="{{ url_for('view_cart')}}">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

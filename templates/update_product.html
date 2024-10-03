@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+</head>
+<body>
+    {% include "logged_navbar.html" %}
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                <h3 class="text-center mb-4">Update Product:<b style="color: #6610f2;"> {{ product.product_name }}</b> </h3>
+            </div>
+        </div>
+        <div class="row  mt-2">
+            <div class="col-sm-4 mx-auto">
+                <form action="/product/update/{{product.product_name}}" method="post" class="form-inline">
+                    <div class="form-group mt-2">
+                            <label for="product_name">Product Name:</label>
+                            <input type="text" class="form-control ml-2" id="product_name" name="product_name" value="{{ product.product_name }}">
+                    </div>
+                    
+                    <div class="form-group mt-2">
+                        <label for="unit">Unit:</label>
+                        <select class="form-control" id="unit" name="unit" >
+                            <option value="unit" {% if product.unit == 'unit' %} selected {% endif %} >per unit</option>
+                            <option value="kg" {% if product.unit == 'kg' %} selected {% endif %}>per kg</option>
+                            <option value="litre" {% if product.unit == 'litre' %} selected {% endif %}>per litre</option>
+                            <option value="dozen" {% if product.unit == 'dozen' %} selected {% endif %}>per dozen</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="price">Price/Unit:</label>
+                        <input type="number" class="form-control ml-2" id="price" name="price" value="{{ product.price }}" required>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="form-control ml-2" id="quantity" name="quantity" value="{{ product.quantity }}" required>
+                    </div>
+                    <div class="text-center mt-2">
+                        <input type="submit" class="btn btn-success mr-3" value="Update">
+                        <a class="btn btn-outline-danger" href="{{ url_for('admin_dashboard')}}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

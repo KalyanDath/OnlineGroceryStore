@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Category</title>
+</head>
+<body>
+    {% include "logged_navbar.html" %}
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                <h3 class="text-center mb-4">Create a Category</h3>
+            </div>
+        </div>
+        <div class="row  mt-2">
+            <div class="col-sm-6 mx-auto">
+                <form action="/category/create" method="post" enctype="multipart/form-data">
+                    
+                        <input type="text" placeholder="Category Name" class="form-control"  name="category_name" required>
+                        <div id="useridhelp" class="form-text">
+                        <p>Should contain only letter and digts and no special symbols like space, emojis etc.</p>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-outline-success mb-4" value=Create>
+                            <a class="btn btn-outline-danger mb-4" href="{{ url_for('admin_dashboard')}}">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-2 text-center">
+            {% if error=="yes" %}
+                <b style="color: #ff0000;"><p>Should contain only letter and digts and no special symbols like space, emojis etc.!!</p></b>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

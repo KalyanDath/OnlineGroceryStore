@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.navbar{
+	float: left;
+	width: 100%;
+	background: #0082e6;
+	padding: 20px 0;
+	box-sizing: border-box;
+}
+.navbar a {
+	float: left;
+	padding: 12px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	width: 20%;
+}
+.navbar a:hover {
+	background-color: #000;
+	color: black;
+}

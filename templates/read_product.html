@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+</head>
+<body>
+    {% include "logged_navbar.html" %}
+    <div class="container">
+            <div class="row mt-4">
+                <div class="col-sm-12">
+                    <h3 class="text-center mb-4" style="color: #ff0000;">View Product:<b style="color: #6610f2;"> {{ product.product_name}}</b> </h3>
+                </div>
+            </div>
+            <table class="table table-primary">
+                <thead>
+                  <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Price perUnit(INR)</th>
+                    <th scope="col">Quantity({{product.unit}})</th>
+                  </tr>
+                </thead>
+                <tr>
+                    <th scope="row">{{product.product_name}}</th>
+                    <td>{{product.unit}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                </tr>
+            </table>
+            <div class="row mt-4">
+                <div class="text-center mt-2">
+                    <a class="btn btn-success mb-4" href="{{ url_for('admin_dashboard')}}">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <h1>Login</h1>
+        <form method="POST" action="{{ url_for('security.login') }}">
+            {{ login_user_form.hidden_tag() }}
+            <label for="email">Email:</label>
+            {{ login_user_form.email(class="form-control", placeholder="Email") }}
+            <label for="password">Password:</label>
+            {{ login_user_form.password(class="form-control", placeholder="Password") }}
+            {{ login_user_form.remember(class="form-check-input") }} Remember Me
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
+    </div>
+</body>
+</html>
